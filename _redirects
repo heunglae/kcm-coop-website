@@ -1,0 +1,5 @@
+# Redirect API requests to your backend
+/tables/* https://your-api-endpoint.com/tables/:splat 200
+
+# SPA fallback
+/*    /index.html   200

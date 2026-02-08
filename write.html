@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기 - 케이시엠교육사회적협동조합</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>케이시엠교육사회적협동조합</h1>
+                    <p class="logo-sub">KCM Education Social Cooperative</p>
+                </div>
+                <nav class="nav">
+                    <button class="nav-toggle" id="navToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-list" id="navList">
+                        <li><a href="index.html">홈</a></li>
+                        <li><a href="about.html">조합소개</a></li>
+                        <li><a href="business.html">주요사업</a></li>
+                        <li><a href="donation.html">기부·후원</a></li>
+                        <li><a href="assembly.html">정기총회</a></li>
+                        <li><a href="disclosure.html">경영공시</a></li>
+                        <li><a href="news.html">소식</a></li>
+                        <li><a href="write.html" class="active">쓰기</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>글쓰기</h1>
+            <p>여러분의 이야기를 나눠주세요</p>
+        </div>
+    </section>
+
+    <!-- Write Form -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-box">
+                <h2><i class="fas fa-pen"></i> 게시글 작성</h2>
+
+                <div class="alert alert-info">
+                    <strong><i class="fas fa-info-circle"></i> 작성 안내</strong><br>
+                    - 모든 게시글은 관리자 승인 후 공개됩니다.<br>
+                    - 작성하신 글은 승인 대기 중 상태로 저장되며, 승인 완료 후 소식 페이지에 게시됩니다.<br>
+                    - 욕설, 비방, 광고성 게시물은 게시가 거부될 수 있습니다.
+                </div>
+
+                <form id="writeForm">
+                    <div class="form-group">
+                        <label for="category">카테고리 <span style="color: red;">*</span></label>
+                        <select id="category" class="form-control" required>
+                            <option value="">선택하세요</option>
+                            <option value="공지사항">공지사항</option>
+                            <option value="활동소식">활동소식</option>
+                            <option value="자유게시판">자유게시판</option>
+                            <option value="문의사항">문의사항</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">작성자 <span style="color: red;">*</span></label>
+                        <input type="text" id="author" class="form-control" placeholder="이름을 입력하세요" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title">제목 <span style="color: red;">*</span></label>
+                        <input type="text" id="title" class="form-control" placeholder="제목을 입력하세요" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">내용 <span style="color: red;">*</span></label>
+                        <textarea id="content" class="form-control" rows="15" placeholder="내용을 입력하세요" required></textarea>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <strong><i class="fas fa-shield-alt"></i> 개인정보 보호 안내</strong><br>
+                        작성하신 게시글은 홈페이지에 공개됩니다. 전화번호, 주소 등 개인정보가 포함되지 않도록 주의해 주세요.
+                    </div>
+
+                    <div style="margin-top: 30px; text-align: center; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> 작성 완료
+                        </button>
+                        <a href="news.html" class="btn btn-outline">
+                            <i class="fas fa-times"></i> 취소
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Writing Guide -->
+            <div class="content-box">
+                <h2><i class="fas fa-question-circle"></i> 게시판 이용 안내</h2>
+                
+                <h3>게시글 작성 정책</h3>
+                <ul>
+                    <li><strong>승인 시스템:</strong> 모든 게시글은 관리자의 승인 후 공개됩니다.</li>
+                    <li><strong>작성 권한:</strong> 누구나 글을 작성할 수 있으나, 승인 과정을 거쳐야 합니다.</li>
+                    <li><strong>승인 기간:</strong> 작성 후 1~3일 이내에 승인 여부가 결정됩니다.</li>
+                    <li><strong>게시 거부 사유:</strong> 욕설, 비방, 허위사실, 광고, 불법 정보 등이 포함된 경우</li>
+                </ul>
+
+                <h3>카테고리 안내</h3>
+                <ul>
+                    <li><strong>공지사항:</strong> 조합의 공식 공지 및 알림 (관리자 전용)</li>
+                    <li><strong>활동소식:</strong> 조합의 활동 및 행사 소식</li>
+                    <li><strong>자유게시판:</strong> 조합원 간 자유로운 의견 교환</li>
+                    <li><strong>문의사항:</strong> 조합 운영, 사업, 후원 등에 대한 문의</li>
+                </ul>
+
+                <h3>게시글 수정 및 삭제</h3>
+                <p>작성하신 게시글의 수정이나 삭제를 원하실 경우, 조합 사무국으로 연락 주시기 바랍니다.</p>
+                <ul>
+                    <li>전화: 02-1234-5678</li>
+                    <li>이메일: info@kcmcoop.kr</li>
+                    <li>운영시간: 평일 09:00-18:00</li>
+                </ul>
+
+                <h3>문의</h3>
+                <p>게시판 이용과 관련한 문의사항이 있으시면 언제든지 연락 주시기 바랍니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>케이시엠교육사회적협동조합</h3>
+                    <p>KCM Education Social Cooperative</p>
+                    <p class="footer-desc">학교와 지역이 함께 만드는 교육 공동체</p>
+                </div>
+                <div class="footer-section">
+                    <h4>바로가기</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">조합소개</a></li>
+                        <li><a href="business.html">주요사업</a></li>
+                        <li><a href="donation.html">기부·후원</a></li>
+                        <li><a href="assembly.html">정기총회</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>투명공개</h4>
+                    <ul class="footer-links">
+                        <li><a href="donation.html#disclosure">기부금 공개</a></li>
+                        <li><a href="assembly.html">총회자료</a></li>
+                        <li><a href="disclosure.html">경영공시</a></li>
+                        <li><a href="https://www.coop.go.kr/" target="_blank">협동조합 누리집</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>문의</h4>
+                    <p><i class="fas fa-envelope"></i> info@kcmcoop.kr</p>
+                    <p><i class="fas fa-phone"></i> 02-1234-5678</p>
+                    <p><i class="fas fa-clock"></i> 평일 09:00-18:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 케이시엠교육사회적협동조합. All rights reserved.</p>
+                <p>회계기간: 매년 3월 1일 ~ 익년 2월 28일</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/write.js"></script>
+</body>
+</html>
