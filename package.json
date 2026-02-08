@@ -1,0 +1,7 @@
+{
+  "name": "kcm-coop-website",
+  "version": "1.0.0",
+  "dependencies": {
+    "faunadb": "^4.8.0"
+  }
+}
