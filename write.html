@@ -55,48 +55,50 @@
                     - 작성하신 글은 승인 대기 중 상태로 저장되며, 승인 완료 후 소식 페이지에 게시됩니다.<br>
                     - 욕설, 비방, 광고성 게시물은 게시가 거부될 수 있습니다.
                 </div>
+<form id="writeForm">
+    <div class="form-group">
+        <label for="category">카테고리 <span style="color: red;">*</span></label>
+        <select id="category" name="category" class="form-control" required>
+            <option value="">선택하세요</option>
+            <option value="공지사항">공지사항</option>
+            <option value="활동소식">활동소식</option>
+            <option value="자유게시판">자유게시판</option>
+            <option value="문의사항">문의사항</option>
+        </select>
+    </div>
 
-                <form id="writeForm">
-                    <div class="form-group">
-                        <label for="category">카테고리 <span style="color: red;">*</span></label>
-                        <select id="category" class="form-control" required>
-                            <option value="">선택하세요</option>
-                            <option value="공지사항">공지사항</option>
-                            <option value="활동소식">활동소식</option>
-                            <option value="자유게시판">자유게시판</option>
-                            <option value="문의사항">문의사항</option>
-                        </select>
-                    </div>
+    <div class="form-group">
+        <label for="author">작성자 <span style="color: red;">*</span></label>
+        <input type="text" id="author" name="author" class="form-control" placeholder="이름을 입력하세요" required>
+    </div>
 
-                    <div class="form-group">
-                        <label for="author">작성자 <span style="color: red;">*</span></label>
-                        <input type="text" id="author" class="form-control" placeholder="이름을 입력하세요" required>
-                    </div>
+    <div class="form-group">
+        <label for="title">제목 <span style="color: red;">*</span></label>
+        <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요" required>
+    </div>
 
-                    <div class="form-group">
-                        <label for="title">제목 <span style="color: red;">*</span></label>
-                        <input type="text" id="title" class="form-control" placeholder="제목을 입력하세요" required>
-                    </div>
+    <div class="form-group">
+        <label for="content">내용 <span style="color: red;">*</span></label>
+        <textarea id="content" name="content" class="form-control" rows="15" placeholder="내용을 입력하세요" required></textarea>
+    </div>
 
-                    <div class="form-group">
-                        <label for="content">내용 <span style="color: red;">*</span></label>
-                        <textarea id="content" class="form-control" rows="15" placeholder="내용을 입력하세요" required></textarea>
-                    </div>
+    <div class="alert alert-warning">
+        <strong><i class="fas fa-shield-alt"></i> 개인정보 보호 안내</strong><br>
+        작성하신 게시글은 홈페이지에 표시될 수 있습니다. 전화번호, 주소 등 개인정보가 포함되지 않도록 주의해 주세요.
+    </div>
 
-                    <div class="alert alert-warning">
-                        <strong><i class="fas fa-shield-alt"></i> 개인정보 보호 안내</strong><br>
-                        작성하신 게시글은 홈페이지에 공개됩니다. 전화번호, 주소 등 개인정보가 포함되지 않도록 주의해 주세요.
-                    </div>
+    <div id="writeMessage" style="display:none; margin-top:20px;"></div>
 
-                    <div style="margin-top: 30px; text-align: center; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-check"></i> 작성 완료
-                        </button>
-                        <a href="news.html" class="btn btn-outline">
-                            <i class="fas fa-times"></i> 취소
-                        </a>
-                    </div>
-                </form>
+    <div style="margin-top: 30px; text-align: center; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-check"></i> 작성 완료
+        </button>
+        <a href="news.html" class="btn btn-outline">
+            <i class="fas fa-times"></i> 취소
+        </a>
+    </div>
+</form>
+
             </div>
 
             <!-- Writing Guide -->
