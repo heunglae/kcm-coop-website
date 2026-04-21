@@ -1,4 +1,16 @@
 # Redirect API requests to your backend
+/robots.txt /robots.txt 200
+/sitemap.xml /sitemap.xml 200
+
+/about /about.html 200
+/donation /donation.html 200
+/assembly /assembly.html 200
+/disclosure /disclosure.html 200
+/news /news.html 200
+/write /write.html 200
+
+/* /index.html 200
+
 /tables/* https://your-api-endpoint.com/tables/:splat 200
 
 # SPA fallback
