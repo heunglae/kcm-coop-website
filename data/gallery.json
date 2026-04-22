@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "image": "/images/gallery/sample1.jpg",
+    "title": "샘플 이미지",
+    "description": "갤러리 테스트용 이미지입니다.",
+    "date": "2026-04-22"
+  }
+]
