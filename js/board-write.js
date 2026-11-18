@@ -5,6 +5,7 @@
     const message=document.getElementById('writeMessage'),button=document.getElementById('publishButton');
     const files=document.getElementById('postImages'),preview=document.getElementById('imagePreview');
     let requestId=crypto.randomUUID(),busy=false,previewUrls=[];
+    const startedAt=Date.now();
     function say(text,error=false){message.textContent=text;message.style.cssText='padding:14px;border-radius:8px;background:'+(error?'#fff1f0':'#edf7ee')+';color:'+(error?'#a21c17':'#205b2b');}
     files.addEventListener('change',()=>{
       previewUrls.forEach(url=>URL.revokeObjectURL(url));previewUrls=[];preview.replaceChildren();
@@ -33,7 +34,7 @@
       event.preventDefault();if(busy || !form.reportValidity())return;
       busy=true;button.disabled=true;
       const controls=[...form.querySelectorAll('input,textarea,select')];
-      const payload={requestId,password:document.getElementById('boardPassword').value,
+      const payload={requestId,startedAt,website:document.getElementById('websiteUrl').value,
         category:document.getElementById('category').value,author:document.getElementById('author').value.trim(),
         title:document.getElementById('title').value.trim(),content:document.getElementById('content').value.trim(),images:[]};
       const selected=[...files.files];controls.forEach(el=>el.disabled=true);
