@@ -47,23 +47,19 @@ function initTabs() {
 // Load news for homepage
 async function loadHomeNews() {
     try {
-        // Load notices
-        const noticeResponse = await fetch('tables/posts?page=1&limit=5&category=공지사항&status=approved&sort=-created_at');
-        if (noticeResponse.ok) {
-            const noticeData = await noticeResponse.json();
-            displayHomeNews('noticeList', noticeData.data);
-        }
-
-        // Load activities
-        const activityResponse = await fetch('tables/posts?page=1&limit=5&category=활동소식&status=approved&sort=-created_at');
-        if (activityResponse.ok) {
-            const activityData = await activityResponse.json();
-            displayHomeNews('activityList', activityData.data);
-        }
+        const results = await Promise.allSettled([
+            fetch('/.netlify/functions/board', { cache: 'no-store' }).then(async r => { if (!r.ok) throw new Error('공용 게시판 오류'); return (await r.json()).posts; }),
+            fetch('/data/posts.json', { cache: 'no-store' }).then(async r => { if (!r.ok) throw new Error('기존 자료 오류'); return r.json(); })
+        ]);
+        if (results.every(r => r.status === 'rejected')) throw new Error('목록 로딩 실패');
+        const all = results.flatMap(r => r.status === 'fulfilled' && Array.isArray(r.value) ? r.value : []);
+        all.sort((a,b) => String(b.created_at || b.date || b.createdAt || '').localeCompare(String(a.created_at || a.date || a.createdAt || '')));
+        const unique = [...new Map(all.map(p => [String(p.id), p])).values()];
+        displayHomeNews('noticeList', unique.filter(p => p.category === '공지사항').slice(0,5));
+        displayHomeNews('activityList', unique.filter(p => p.category === '활동소식').slice(0,5));
     } catch (error) {
-        console.error('Error loading news:', error);
-        displayNoData('noticeList');
-        displayNoData('activityList');
+        console.error('홈 소식 로딩 실패:', error);
+        displayNoData('noticeList'); displayNoData('activityList');
     }
 }
 
@@ -78,7 +74,7 @@ function displayHomeNews(listId, posts) {
     }
 
     list.innerHTML = posts.map(post => {
-        const date = new Date(post.created_at).toLocaleDateString('ko-KR');
+        const date = new Date(post.created_at || post.date || post.createdAt).toLocaleDateString('ko-KR');
         return `
             <li>
                 <a href="news.html?id=${post.id}">
@@ -106,7 +102,7 @@ function escapeHtml(text) {
         '"': '&quot;',
         "'": '&#039;'
     };
-    return text.replace(/[&<>"']/g, m => map[m]);
+    return String(text ?? "").replace(/[&<>"']/g, m => map[m]);
 }
 
 // Format date
