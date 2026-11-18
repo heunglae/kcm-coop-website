@@ -1,16 +1,11 @@
 import { getStore } from '@netlify/blobs';
-import { createHash, timingSafeEqual } from 'node:crypto';
 const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
 const categories = new Set(['공지사항','활동소식','자유게시판','문의사항']);
 const headers = {'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
 function json(data,status=200) { return new Response(JSON.stringify(data),{status,headers:{...headers,'Content-Type':'application/json; charset=utf-8'}}); }
 function failure(message,status=400) { const error = new Error(message); error.status = status; throw error; }
 function text(value,max,name) { if(typeof value !== 'string' || !value.trim() || value.trim().length>max) failure(name+' 입력을 확인해 주세요.'); return value.trim(); }
-function passwordMatches(value, expected) {
-  if(typeof value !== 'string' || value.length>256) return false;
-  const hash = s => createHash('sha256').update(s).digest();
-  return timingSafeEqual(hash(value),hash(expected));
-}
+
 function validateImage(image) {
   if(!image || typeof image.data !== 'string' || image.data.length>550000 || !/^[A-Za-z0-9+/]*={0,2}$/.test(image.data)) failure('첨부 사진 형식 또는 크기가 올바르지 않습니다.');
   const bytes = Buffer.from(image.data,'base64');
@@ -26,8 +21,6 @@ export function createBoardHandler(storeFactory=getStore) {
       if(!['GET','POST'].includes(req.method)) return json({error:'허용되지 않은 요청입니다.'},405);
       // No credentials or private configuration are sent to the browser.
       if(req.method==='POST') {
-        const expected = process.env.BOARD_WRITE_PASSWORD;
-        if(!expected || expected.length<16) return json({error:'Netlify에 BOARD_WRITE_PASSWORD를 16자 이상으로 설정하고 다시 배포해 주세요.'},503);
         const origin = req.headers.get('origin');
         const allowed = new Set([url.origin,'https://kcmcoops.kr','https://www.kcmcoops.kr',process.env.URL].filter(Boolean));
         if(origin && !allowed.has(origin)) return json({error:'허용되지 않은 사이트의 요청입니다.'},403);
@@ -36,7 +29,11 @@ export function createBoardHandler(storeFactory=getStore) {
         if(Buffer.byteLength(raw)>1200000) return json({error:'사진 용량이 너무 큽니다. 사진 수나 크기를 줄여 주세요.'},413);
         let input; try {input=JSON.parse(raw);} catch {return json({error:'입력 형식이 잘못되었습니다.'},400);}
         if(!input || typeof input!=='object') failure('입력 형식을 확인해 주세요.');
-        if(!passwordMatches(input.password,expected)) return json({error:'관리자 작성 비밀번호가 일치하지 않습니다.'},401);
+        // Basic, bypassable spam checks; this is an intentionally public form,
+        // not an authenticated administrator endpoint or a full bot defense.
+        if(typeof input.website !== 'string' || input.website !== '') return json({error:'자동입력 방지 확인에 실패했습니다.'},400);
+        const elapsed=Date.now()-Number(input.startedAt);
+        if(!Number.isFinite(elapsed) || elapsed<2500 || elapsed>86400000) return json({error:'화면을 연 뒤 3초 이상 기다려 주세요. 오래 열어 두었다면 작성 내용을 복사한 뒤 페이지를 다시 열어 주세요.'},400);
         const id = String(input.requestId || '');
         if(!UUID.test(id)) failure('요청 번호가 잘못되었습니다. 페이지를 새로 열어 주세요.');
         const category = text(input.category,30,'카테고리');
