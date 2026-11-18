@@ -36,13 +36,13 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav-list" id="navList">
-                        <li><a href="index.html">홈</a></li>
-                        <li><a href="about.html">조합소개</a></li>
-                        <li><a href="donation.html">기부·후원</a></li>
-                        <li><a href="assembly.html">정기총회</a></li>
-                        <li><a href="disclosure.html" class="active">경영공시</a></li>
-                        <li><a href="news.html">소식</a></li>
-                        <li><a href="write.html">쓰기</a></li>
+                        <li><a href='/'>홈</a></li>
+                        <li><a href='/about'>조합소개</a></li>
+                        <li><a href='/donation'>기부·후원</a></li>
+                        <li><a href='/assembly'>정기총회</a></li>
+                        <li><a class='active' href='/disclosure'>경영공시</a></li>
+                        <li><a href='/news'>소식</a></li>
+                        <li><a href='/write'>쓰기</a></li>
                     </ul>
                 </nav>
             </div>
@@ -104,13 +104,48 @@
 
                 <!-- Tab Navigation -->
                 <div class="tab-nav">
-                    <button class="tab-btn active" data-tab="2024">2024회계연도 (2025 공시)</button>
+                    <button class="tab-btn active" data-tab="2025" type="button">2025회계연도 (2026 공시)</button>
+                    <button class="tab-btn" data-tab="2024">2024회계연도 (2025 공시)</button>
                     <button class="tab-btn" data-tab="2023">2023회계연도 (2024 공시)</button>
                     <button class="tab-btn" data-tab="2022">2021회계연도 (2023 공시)</button>
                 </div>
 
-                <!-- 2024 회계연도 (2024 공시) -->
-                <div class="tab-content active" id="tab-2024">
+                <!-- 2025회계연도: 실제 공시자료 첨부 전 -->
+                <div class="tab-content active" id="tab-2025">
+                    <h3>2025회계연도 경영공시</h3>
+                    <p>대상 회계기간: <strong>2025년 3월 1일 ~ 2026년 2월 28일</strong></p>
+                    <div class="alert alert-info" role="status">
+                        <strong>홈페이지 첨부파일 미등록</strong><br>
+                        해당 회계연도의 공시자료 파일은 추후 등록할 예정입니다.
+                        이 안내는 홈페이지 자료 등록 상태이며, 공식 경영공시 제출 여부를 의미하지 않습니다.
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <caption style="text-align:left;padding:10px 0;">2025회계연도 자료 안내</caption>
+                            <tbody>
+                                <tr><th scope="row">회계연도</th><td>2025회계연도</td></tr>
+                                <tr><th scope="row">회계기간</th><td>2025. 3. 1. ~ 2026. 2. 28.</td></tr>
+                                <tr><th scope="row">공시 연도</th><td>2026년</td></tr>
+                                <tr><th scope="row">첨부파일</th><td>미등록 — 파일 등록 후 다운로드 제공</td></tr>
+                                <tr><th scope="row">주요 재무·사업 실적</th><td>자료 확인 후 게시 예정</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="margin-top:24px;">
+                        <button type="button" class="download-btn" disabled
+                            style="opacity:0.6;cursor:not-allowed;">
+                            경영공시 자료 등록 예정
+                        </button>
+                        <!-- 실제 PDF 업로드 후 위 button을 지우고 아래 a 태그의 주석을 해제하세요.
+                        <a class="download-btn" href="/uploads/disclosure/disclosure-2025.pdf" download>
+                            2025회계연도 경영공시 자료 다운로드 (PDF)
+                        </a>
+                        -->
+                    </div>
+                </div>
+
+                <!-- 기존 연도 자료: 원문 유지 -->
+                <div class="tab-content" id="tab-2024">
                     <h3>2024 회계연도 경영공시 (2024.3.1 ~ 2025.2.28)</h3>
                     
                     <div class="table-responsive">
@@ -234,7 +269,7 @@
 
                 <div class="alert alert-success" style="margin-top: 30px;">
                     <strong><i class="fas fa-check-circle"></i> 경영공시 이행 현황</strong><br>
-                    케이시엠교육사회적협동조합은 협동조합기본법에 따라 매년 정해진 기한 내에 경영공시를 성실히 이행하고 있습니다.
+                    이 페이지의 첨부파일 등록 상태와 협동조합 누리집의 공식 경영공시 제출 여부는 구분됩니다. 공식 공시 내역은 협동조합 누리집에서 확인해 주세요.
                 </div>
             </div>
 
@@ -270,17 +305,17 @@
                 <div class="footer-section">
                     <h4>바로가기</h4>
                     <ul class="footer-links">
-                        <li><a href="about.html">조합소개</a></li>
-                        <li><a href="donation.html">기부·후원</a></li>
-                        <li><a href="assembly.html">정기총회</a></li>
+                        <li><a href='/about'>조합소개</a></li>
+                        <li><a href='/donation'>기부·후원</a></li>
+                        <li><a href='/assembly'>정기총회</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>투명공개</h4>
                     <ul class="footer-links">
-                        <li><a href="donation.html#disclosure">기부금 공개</a></li>
-                        <li><a href="assembly.html">총회자료</a></li>
-                        <li><a href="disclosure.html">경영공시</a></li>
+                        <li><a href='/donation#disclosure'>기부금 공개</a></li>
+                        <li><a href='/assembly'>총회자료</a></li>
+                        <li><a href='/disclosure'>경영공시</a></li>
                         <li><a href="https://www.coop.go.kr/" target="_blank">협동조합 누리집</a></li>
                     </ul>
                 </div>
@@ -299,5 +334,7 @@
     </footer>
 
     <script src="js/main.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
+
