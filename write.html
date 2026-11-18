@@ -65,7 +65,7 @@
 
                 <div class="alert alert-info">
                     <strong><i class="fas fa-info-circle"></i> 작성 안내</strong><br>
-                    - 관리자 작성 비밀번호를 입력하면 승인 대기 없이 바로 공개됩니다.<br>
+                    - 비밀번호 없이 누구나 글과 사진을 등록할 수 있습니다. 저장 후 바로 공개됩니다.<br>
                     - 사진은 선택 사항이며 최대 2장까지 첨부할 수 있습니다.<br>
                     - 욕설, 비방, 광고성 게시물은 게시가 거부될 수 있습니다.
                 </div>
@@ -75,7 +75,7 @@
 <div class="form-group"><label for="title">제목</label><input id="title" class="form-control" maxlength="200" required></div>
 <div class="form-group"><label for="content">내용</label><textarea id="content" class="form-control" rows="12" maxlength="20000" required></textarea></div>
 <div class="form-group"><label for="postImages">사진 첨부 (선택, 최대 2장)</label><input id="postImages" class="form-control" type="file" accept="image/jpeg,image/png,image/webp" multiple><p>JPG·PNG·WEBP, 원본 장당 10MB 이하. 업로드 시 크기를 줄입니다. 첨부 사진과 게시글은 누구나 볼 수 있으므로 개인정보와 공개 동의를 확인하세요.</p><div id="imagePreview" style="display:flex;gap:12px;flex-wrap:wrap"></div></div>
-<div class="form-group"><label for="boardPassword">관리자 작성 비밀번호</label><input id="boardPassword" class="form-control" type="password" autocomplete="off" maxlength="256" required><p>Netlify에 설정한 BOARD_WRITE_PASSWORD 값입니다. GitHub 로그인 비밀번호가 아닙니다.</p></div>
+<div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label for="websiteUrl">이 칸은 비워 두세요</label><input id="websiteUrl" type="text" tabindex="-1" autocomplete="off"></div>
 <p id="writeMessage" role="status" aria-live="polite"></p>
 <div style="display:flex;gap:12px;justify-content:center"><button id="publishButton" type="submit" class="btn btn-primary">사진과 함께 게시하기</button><a href="/news" class="btn btn-outline">목록</a></div>
 </form>
@@ -89,14 +89,14 @@
                 <h3>게시글 작성 정책</h3>
                 <ul>
                     <li><strong>공개 방식:</strong> 저장 완료된 글은 바로 공개됩니다.</li>
-                    <li><strong>작성 권한:</strong> 관리자 작성 비밀번호를 아는 담당자가 등록합니다.</li>
+                    <li><strong>작성 권한:</strong> 누구나 등록할 수 있는 공개 게시판입니다. 작성자 이름은 인증되지 않습니다.</li>
                     <li><strong>저장 위치:</strong> Netlify 공용 저장소 (다른 기기에서도 조회 가능)</li>
                     <li><strong>게시 거부 사유:</strong> 욕설, 비방, 허위사실, 광고, 불법 정보 등이 포함된 경우</li>
                 </ul>
 
                 <h3>카테고리 안내</h3>
                 <ul>
-                    <li><strong>공지사항:</strong> 조합의 공식 공지 및 알림 (관리자 전용)</li>
+                    <li><strong>공지사항:</strong> 공지 및 알림 (누구나 작성 가능하므로 공식 공지 여부는 사무국에 확인)</li>
                     <li><strong>활동소식:</strong> 조합의 활동 및 행사 소식</li>
                     <li><strong>자유게시판:</strong> 조합원 간 자유로운 의견 교환</li>
                     <li><strong>문의사항:</strong> 조합 운영, 사업, 후원 등에 대한 문의</li>
@@ -157,7 +157,7 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="/js/board-write.js?v=1" defer></script>
+    <script src="/js/board-write.js?v=2" defer></script>
 </body>
 </html>
 
